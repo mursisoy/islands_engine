@@ -44,7 +44,8 @@ jobs:
     - name: Upload coverage reports to Codecov
       uses: codecov/codecov-action@v3
       env:
-        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        token: ${{ secrets.CODECOV_TOKEN }}
+      with:
         directory: ./coverage/reports/
         fail_ci_if_error: true
         files: ./cover/excoveralls.json
