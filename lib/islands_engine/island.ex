@@ -5,6 +5,25 @@ defmodule IslandsEngine.Island do
   @enforce_keys [:coordinates, :hit_coordinates]
   defstruct [:coordinates, :hit_coordinates]
 
+  @doc """
+  Creates a new island based on type and upper left coordinate
+
+  ## Examples
+
+      iex> alias IslandsEngine.{Island,Coordinate}
+      iex> {:ok, coordinate} = Coordinate.new(4,6)
+      iex> Island.new(:l_shape, coordinate)
+      {:ok,
+      %IslandsEngine.Island{
+        coordinates: MapSet.new([
+          %IslandsEngine.Coordinate{row: 4, col: 6},
+          %IslandsEngine.Coordinate{row: 5, col: 6},
+          %IslandsEngine.Coordinate{row: 6, col: 6},
+          %IslandsEngine.Coordinate{row: 6, col: 7}
+        ]),
+        hit_coordinates: MapSet.new([])
+      }}
+  """
   def new(type, %Coordinate{} = upper_left) do
     with [_|_] = offsets <- offsets(type),
          %MapSet{} = coordinates <- add_coordinates(offsets, upper_left)
@@ -14,7 +33,6 @@ defmodule IslandsEngine.Island do
       error -> error
     end
   end
-
 
   defp offsets(:square), do: [{0,0},{0,1},{1,0},{1,1}]
   defp offsets(:atoll), do: [{0,0},{0,1},{1,1},{2,0},{2,1}]
