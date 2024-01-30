@@ -1,11 +1,11 @@
 defmodule IslandsEngine.IslandTest do
   use ExUnit.Case
   doctest IslandsEngine.Island
-  alias IslandsEngine.{Island,Coordinate}
+  alias IslandsEngine.{Island, Coordinate}
 
   describe "create island types" do
     setup do
-      {:ok, coordinate} = Coordinate.new(1,1)
+      {:ok, coordinate} = Coordinate.new(1, 1)
       {:ok, %{coordinate: coordinate}}
     end
 
@@ -76,7 +76,7 @@ defmodule IslandsEngine.IslandTest do
 
   describe "create invalid island types" do
     setup do
-      {:ok, coordinate} = Coordinate.new(1,1)
+      {:ok, coordinate} = Coordinate.new(1, 1)
       {:ok, %{coordinate: coordinate}}
     end
 
@@ -87,7 +87,7 @@ defmodule IslandsEngine.IslandTest do
 
   describe "create island out of bounds" do
     setup do
-      {:ok, coordinate} = Coordinate.new(1,10)
+      {:ok, coordinate} = Coordinate.new(1, 10)
       {:ok, %{coordinate: coordinate}}
     end
 

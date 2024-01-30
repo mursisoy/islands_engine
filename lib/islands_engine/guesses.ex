@@ -1,4 +1,7 @@
 defmodule IslandsEngine.Guesses do
+  @moduledoc """
+  Module to store the current status of the board
+  """
   alias IslandsEngine.{Coordinate, Guesses}
 
   @enforce_keys [:hits, :misses]

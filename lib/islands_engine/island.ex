@@ -1,4 +1,7 @@
 defmodule IslandsEngine.Island do
+  @moduledoc """
+  Module Island to generate island shapes
+  """
   alias IslandsEngine.Coordinate
   alias __MODULE__
 
@@ -34,15 +37,15 @@ defmodule IslandsEngine.Island do
     end
   end
 
-  defp offsets(:square), do: [{0,0},{0,1},{1,0},{1,1}]
-  defp offsets(:atoll), do: [{0,0},{0,1},{1,1},{2,0},{2,1}]
-  defp offsets(:dot), do: [{0,0}]
-  defp offsets(:l_shape), do: [{0,0},{1,0},{2,0},{2,1}]
-  defp offsets(:s_shape), do: [{0,1},{0,2},{1,0},{1,1}]
+  defp offsets(:square), do: [{0, 0}, {0, 1}, {1, 0}, {1, 1}]
+  defp offsets(:atoll), do: [{0, 0}, {0, 1}, {1, 1}, {2, 0}, {2, 1}]
+  defp offsets(:dot), do: [{0, 0}]
+  defp offsets(:l_shape), do: [{0, 0}, {1, 0}, {2, 0}, {2, 1}]
+  defp offsets(:s_shape), do: [{0, 1}, {0, 2}, {1, 0}, {1, 1}]
   defp offsets(_), do: {:error, :invalid_island_type}
 
   defp add_coordinates(offsets, upper_left) do
-    Enum.reduce_while(offsets,MapSet.new(), fn offset,acc ->
+    Enum.reduce_while(offsets, MapSet.new(), fn offset, acc ->
       add_coordinate(acc, upper_left, offset)
     end)
   end

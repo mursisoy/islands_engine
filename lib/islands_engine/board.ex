@@ -1,4 +1,7 @@
 defmodule IslandsEngine.Board do
+  @moduledoc """
+  Board module
+  """
   @doc """
   Create new board
 
