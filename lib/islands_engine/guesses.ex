@@ -28,7 +28,7 @@ defmodule IslandsEngine.Guesses do
       iex> alias IslandsEngine.{Guesses,Coordinate}
       iex> guesses = Guesses.new()
       iex> {:ok, coordinate1} = Coordinate.new(1,1)
-      iex> Guesses.add(guesses, :hits, coordinate1)
+      iex> Guesses.add(guesses, :hit, coordinate1)
       %IslandsEngine.Guesses{
         hits: MapSet.new([%IslandsEngine.Coordinate{row: 1, col: 1}]),
         misses: MapSet.new([])
@@ -37,15 +37,15 @@ defmodule IslandsEngine.Guesses do
       iex> alias IslandsEngine.{Guesses,Coordinate}
       iex> guesses = Guesses.new()
       iex> {:ok, coordinate1} = Coordinate.new(1,1)
-      iex> Guesses.add(guesses, :misses, coordinate1)
+      iex> Guesses.add(guesses, :miss, coordinate1)
       %IslandsEngine.Guesses{
         hits: MapSet.new([]),
         misses: MapSet.new([%IslandsEngine.Coordinate{row: 1, col: 1}])
       }
 
   """
-  def add(%Guesses{} = guesses, :hits, %Coordinate{} = coordinate), do:
+  def add(%Guesses{} = guesses, :hit, %Coordinate{} = coordinate), do:
     update_in(guesses.hits, &MapSet.put(&1, coordinate))
-  def add(%Guesses{} = guesses, :misses, %Coordinate{} = coordinate), do:
+  def add(%Guesses{} = guesses, :miss, %Coordinate{} = coordinate), do:
     update_in(guesses.misses, &MapSet.put(&1, coordinate))
 end
