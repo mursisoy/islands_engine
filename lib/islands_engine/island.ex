@@ -44,7 +44,7 @@ defmodule IslandsEngine.Island do
   defp offsets(:s_shape), do: [{0, 1}, {0, 2}, {1, 0}, {1, 1}]
   defp offsets(_), do: {:error, :invalid_island_type}
 
-  defp add_coordinates(offsets, upper_left) do
+  defp add_coordinates(offsets, %Coordinate{} = upper_left) do
     Enum.reduce_while(offsets, MapSet.new(), fn offset, acc ->
       add_coordinate(acc, upper_left, offset)
     end)
@@ -57,7 +57,10 @@ defmodule IslandsEngine.Island do
     end
   end
 
-  def overlaps?(existing_island, new_island), do:
+  def overlaps?(%Island{} = existing_island, %Island{} = new_island), do:
     not MapSet.disjoint?(existing_island.coordinates, new_island.coordinates)
 
+  # def guess(%Island{} = island, %Coordinate{} = coordinate) do
+  #   case MapSet.member?(island.co, coordinate)
+  # end
 end
