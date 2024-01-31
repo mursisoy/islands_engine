@@ -113,4 +113,23 @@ defmodule IslandsEngine.IslandTest do
       assert Island.overlaps?(square, l_shape) == false
     end
   end
+
+  describe "guess coordinate" do
+    setup do
+      {:ok, coordinate} = Coordinate.new(1, 1)
+      {:ok, island} = Island.new(:square, coordinate)
+      {:ok, %{island: island}}
+    end
+
+    test "guess hit", %{island: island} do
+      {:ok, hit} = Coordinate.new(1, 1)
+      {:hit, %Island{hit_coordinates: hit_coordinates}} = Island.guess(island, hit)
+      assert MapSet.member?(hit_coordinates, hit)
+    end
+
+    test "guess miss", %{island: island} do
+      {:ok, miss} = Coordinate.new(1, 5)
+      assert Island.guess(island, miss) == :miss
+    end
+  end
 end
