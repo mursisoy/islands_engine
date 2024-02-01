@@ -12,6 +12,7 @@ defmodule IslandsEngine.MixProject do
       preferred_cli_env: [
         coveralls: :test,
         "coveralls.json": :test,
+        "coveralls.html": :test
       ]
     ]
   end
