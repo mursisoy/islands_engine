@@ -37,6 +37,9 @@ defmodule IslandsEngine.Island do
     end
   end
 
+  def types(), do:
+    [:atoll, :square, :dot, :l_shape, :s_shape]
+
   defp offsets(:square), do: [{0, 0}, {0, 1}, {1, 0}, {1, 1}]
   defp offsets(:atoll), do: [{0, 0}, {0, 1}, {1, 1}, {2, 0}, {2, 1}]
   defp offsets(:dot), do: [{0, 0}]
@@ -63,7 +66,7 @@ defmodule IslandsEngine.Island do
   def guess(%Island{} = island, %Coordinate{} = coordinate) do
     case MapSet.member?(island.coordinates, coordinate) do
       true -> hit_coordinates = MapSet.put(island.hit_coordinates, coordinate)
-      {:hit, %Island{island | hit_coordinates: hit_coordinates}}
+              {:hit, %Island{island | hit_coordinates: hit_coordinates}}
       false -> :miss
     end
   end
