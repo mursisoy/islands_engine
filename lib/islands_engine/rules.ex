@@ -1,4 +1,7 @@
 defmodule IslandsEngine.Rules do
+  @moduledoc """
+  Module Rules to check transitions between valid game states
+  """
   alias __MODULE__
 
   defstruct state: :initialized,
